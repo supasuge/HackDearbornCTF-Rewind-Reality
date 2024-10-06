@@ -6,26 +6,20 @@ Private source repository for the CTF occuring at the hack dearborn event. Categ
 
 ---
 
-## 📂 Purpose of the Repository
-
-This repository serves as the centralized location for developing, organizing, and managing challenges for the HackDearborn CTF-2024 event. It ensures a structured approach to challenge creation, collaboration between team members, and seamless integration with the CTFd platform.
-What to Include:
-
-- **Challenges**: Organized by category with all necessary files for deployment and solutions.
-- **Scripts**: Utility scripts for deployment and automation.
-- **Documentation**: Guidelines for contributing, challenge creation, and project setup.
-- **Solutions**: Solution scripts and/or writeups must be provided to validate the challenge is working and solveable.
-
----
-
-## 📁 Directory Structure
+## 📁📂 Directory Structure
 
 🔍 Directory Details
-- Category Directories (`crypto/`, `web/`, `rev/`, `misc/`, `forensics/`, `pwn/`):
-  - Each category contains multiple challenges.
-  - Challenge Directory (`challenge-name/`):
+- Category Directories
+  - `crypto/`
+  - `web/`
+  - `rev/`
+  - `misc/`
+  - `forensics/`
+  - `pwn/`
+- 5-6 challenges per category.
+  - Subdirectories for each challenge directory from the parent catetegory director. For example: `crypto/oh-sike-wrong-number`
   - `build/`: 
-    - Contains the `Dockerfile` and `requirements.txt` (if applicable) for building the challenge environment + any other source code needed + dependencies.
+    - Contains the `Dockerfile` and `requirements.txt` (if applicable) for building the challenge environment + any other source code needed + dependencies. 
   - `dist/`:
     - Stores challenge-specific files to be distributed to participants (e.g., archives, executables).
   - `solution/`:
@@ -36,6 +30,9 @@ What to Include:
     - Contains utility scripts such as deployment scripts (deploy.sh) for setting up services or installing necessary plugins.
   - `docs/`:
     - Holds documentation files like CONTRIBUTING.md which outlines guidelines for contributing to the repository.
+
+> [!INFO]
+> If it is a static challenge it doesn't need a `Dockerfile`
 
 ---
 
