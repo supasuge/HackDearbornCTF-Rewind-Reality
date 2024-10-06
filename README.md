@@ -177,10 +177,7 @@ Each time a challenge is added, please be sure to come here and update the READM
         - *Description *1-2 sentences max*:
         - *Dist files*: (These are the file to be distributed to the player if any)
     
-    - [ ] *Challenge Name 6*
-        - *Difficulty: (Easy/Med/Hard)*
-        - *Description *1-2 sentences max*:
-        - *Dist files*: (These are the file to be distributed to the player if any)
+    
 
 
 - [ ] **Web Exploitation**:
