@@ -1,0 +1,201 @@
+.
+├── CHECKLIST.md
+├── README.md
+├── crypto
+│   ├── CHANGE_ME_1
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_2
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_3
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── blocks-on-blocks-on-rocks
+│   │   ├── README.md
+│   │   ├── build
+│   │   │   ├── Dockerfile
+│   │   │   └── app.py
+│   │   ├── dist
+│   │   │   └── app.py
+│   │   └── solution
+│   │       ├── WRITEUP.md
+│   │       └── solve.py
+│   └── oh-sike-wrong-number
+│       ├── README.md
+│       ├── build
+│       │   ├── Dockerfile
+│       │   └── chal.py
+│       ├── dist
+│       │   ├── chal.py
+│       │   ├── chal.sage
+│       │   ├── chal.sage.py
+│       │   └── out.txt
+│       └── solution
+│           ├── SIKEp434.sage
+│           ├── SIKEp434.sage.py
+│           ├── WRITEUP.md
+│           ├── castryck_decru_shortcut.sage
+│           ├── flag.txt
+│           ├── helpers.py
+│           ├── public_values_aux.py
+│           ├── rctf_solve.sage
+│           ├── richelot_aux.py
+│           ├── richelot_aux.sage
+│           ├── s2dh.py
+│           ├── s2dh.sage
+│           ├── s2dh.sage.py
+│           ├── sandwich_attack.sage
+│           ├── solve.sage.py
+│           ├── speedup.sage
+│           └── uvtable.sage
+├── forensics
+│   ├── CHANGE_ME_1
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_2
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_3
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_4
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   └── CHANGE_ME_5
+│       ├── README.md
+│       ├── build
+│       ├── dist
+│       └── solution
+├── full-dir-tree.txt
+├── lazydir_create.sh
+├── misc
+│   ├── CHANGE_ME_1
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_2
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_3
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_4
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   └── CHANGE_ME_5
+│       ├── README.md
+│       ├── build
+│       ├── dist
+│       └── solution
+├── pwn
+│   ├── CHANGE_ME_1
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_2
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_3
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_4
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_5
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   └── CHANGE_ME_6
+│       ├── README.md
+│       ├── build
+│       ├── dist
+│       └── solution
+├── rev
+│   ├── CHANGE_ME_1
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_2
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_3
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   ├── CHANGE_ME_4
+│   │   ├── README.md
+│   │   ├── build
+│   │   ├── dist
+│   │   └── solution
+│   └── CHANGE_ME_5
+│       ├── README.md
+│       ├── build
+│       ├── dist
+│       └── solution
+└── web
+    ├── CHANGE_ME_1
+    │   ├── README.md
+    │   ├── build
+    │   ├── dist
+    │   └── solution
+    ├── CHANGE_ME_2
+    │   ├── README.md
+    │   ├── build
+    │   ├── dist
+    │   └── solution
+    ├── CHANGE_ME_3
+    │   ├── README.md
+    │   ├── build
+    │   ├── dist
+    │   └── solution
+    ├── CHANGE_ME_4
+    │   ├── README.md
+    │   ├── build
+    │   ├── dist
+    │   └── solution
+    ├── CHANGE_ME_5
+    │   ├── README.md
+    │   ├── build
+    │   ├── dist
+    │   └── solution
+    └── CHANGE_ME_6
+        ├── README.md
+        ├── build
+        ├── dist
+        └── solution
+
+135 directories, 64 files
