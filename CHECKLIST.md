@@ -161,6 +161,7 @@ Each time a challenge is added, please be sure to come here and update the check
         - *Description *1-2 sentences max*:
         - *Dist files*: (These are the file to be distributed to the player if any)
 
+---
      
 **Total: 29 Challenges planned above**
 
