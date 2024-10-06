@@ -31,8 +31,10 @@ Private source repository for the CTF occuring at the hack dearborn event. Categ
   - `docs/`:
     - Holds documentation files like CONTRIBUTING.md which outlines guidelines for contributing to the repository.
 
-> [!INFO]
+
+> [!NOTE]
 > If it is a static challenge it doesn't need a `Dockerfile`
+
 
 ---
 
