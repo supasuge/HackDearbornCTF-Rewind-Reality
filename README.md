@@ -4,21 +4,40 @@ Private source repository for the CTF occuring at the hack dearborn event. Categ
 
 ---
 
-📂 Purpose of the Repository
+## 📂 Purpose of the Repository
 
 This repository serves as the centralized location for developing, organizing, and managing challenges for the HackDearborn CTF-2024 event. It ensures a structured approach to challenge creation, collaboration between team members, and seamless integration with the CTFd platform.
 What to Include:
 
-    Challenges: Organized by category with all necessary files for deployment and solutions.
-    Scripts: Utility scripts for deployment and automation.
-    Documentation: Guidelines for contributing, challenge creation, and project setup.
+- Challenges: Organized by category with all necessary files for deployment and solutions.
+- Scripts: Utility scripts for deployment and automation.
+- Documentation: Guidelines for contributing, challenge creation, and project setup.
+- Solutions: Solution scripts and/or writeups must be provided to validate the challenge is working and solveable.
 
-📁 Directory Structure
+## 📁 Directory Structure
 
 Below is the standardized and generic directory structure for the CTFd project. Follow these conventions to maintain consistency and ease of navigation.
 
+```
+
+HackDeabornCTF-2024-Private/
+-- crypto/
+---- sike_wrong_number/
+------ build/
+-------- Dockerfile
+-------- requirements.txt (Optional, only if needed)\
+-------- {source code file for challenge}: app.py
+------ dist/
+-------- app.py  
+------ solution/
+-------- WRITEUP.md
+-------- solve.py/poc.pu
+
+```
+
 
 ---
+
 
 ## How To Add a Challenge
 Please follow the following specifications:
@@ -36,23 +55,26 @@ Please follow the following specifications:
 
 - (TBD) Create a chal.<category>.<name>.yml file in the .github/workflows/ directory to build the challenge. Ignore this step for now.
 
+> [!WARNING]
+> Ignore the workflows for now
 
 Once made, please push your branch to the repository and create a pull request to merge it into the main branch.
 
 Please follow the below specified file structure to add a challenge.
 
-
+---
 
 ### Directory Structure
+- Note that this is just a pre-liminary example for us to use for reference purposes.
 
 ```
 |HackDearbornCTF-2024-Private/
 ├── crypto/
-│   ├── challenge-name/
-│   │   ├── build/
+│   ├── challenge-name/                     # Directory under crypto/ with chalenge name
+│   │   ├── build/                          # build directory
 │   │   │   ├── Dockerfile                  # Dockerfile for deploying the challenge
 │   │   │   └── requirements.txt            # Python dependencies (if any)
-│   │   ├── dist/
+│   │   ├── dist/                           # distribution directory
 │   │   │   └── challenge-archive.tar.xz     # Challenge files to be distributed to users
 │   │   ├── solution/
 │   │   │   ├── solve.py                     # Solution script
