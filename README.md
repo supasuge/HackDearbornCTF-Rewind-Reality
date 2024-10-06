@@ -87,6 +87,9 @@ cd HackDearbornCTF-2024-Private
 
 #### Example Workflow for a new challenge
 
+> [!DANGER]
+> You don't need to run all the commands below to create the file's and directories, however you **must** create and enter a new branch for the challenge your working on `git checkout -b /<category>/<chal name>` and make sure if you provide a full directory for distribution, you archive it properly using `tar` into a single `.tar.xz` archive.
+
 ```bash
 #!/bin/bash
 # Make sure you `cd` into HackDearbornCTF-2024-Private first
