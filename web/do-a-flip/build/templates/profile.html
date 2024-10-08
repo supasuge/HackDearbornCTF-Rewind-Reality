@@ -7,6 +7,50 @@
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">Welcome, {{ username }}!</h2>
                     <p class="text-center">You're logged in, but you're not an admin yet. Can you figure out how to become one?</p>
+                    
+                    <div class="mt-4">
+                        <h4>Here's your super specific not vague in any way hint:</h4>
+                        <ul>
+                            <li>Can you do a flip for the one time?</li>
+                            <li>I believe in you big dawg c'mon now...</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4">
+                        <h4>Profile</h4>
+                        <p>Don't forget to change your password occasionally! You can do that <a href="{{ url_for('change_password') }}">here</a>.</p>
+                        <ul>
+                            <li>Username: {{ username }}</li>
+                            <li><a href="{{ url_for('change_password') }}">Change Password</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4">
+                        <h4>How many licks does it take to get to the center of a tootsie pop?</h4>
+                        <ul>
+                            <li><a href="{{ url_for('change_password') }}">A: Don't care give me the answer.</a></li>
+                            <li><a href="{{ url_for('change_password') }}">B: 69*2^2</a></li>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#myModal">C: Click me and find out...</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light">
+                          <div class="modal-body text-center">
+                            <div class="tenor-gif-embed" data-postid="18175022584481604031" data-share-method="host" data-aspect-ratio="1.356" data-width="100%">
+                              <a href="https://tenor.com/view/dave-chappelle-im-rich-im-rich-biatch-rick-james-charlie-murphy-gif-18175022584481604031">
+                                Dave Chappelle Im Correct GIF
+                              </a> from <a href="https://tenor.com/search/dave+chappelle-gifs">Dave Chappelle GIFs</a>
+                            </div>
+                            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                          </div>
+                          <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>

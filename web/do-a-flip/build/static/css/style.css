@@ -27,6 +27,8 @@
   background-position: center center;
 }
 
+
+
 /* Height for devices larger than 576px */
 @media (min-width: 992px) {
   #introCarousel {

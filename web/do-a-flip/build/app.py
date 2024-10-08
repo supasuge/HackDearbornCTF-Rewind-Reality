@@ -5,10 +5,22 @@ from base64 import b64encode, b64decode
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import time
+from flask_sqlalchemy import SQLAlchemy
+from models import db, User, create_user
+
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 app.secret_key = os.urandom(16)
+
 FLAG = open('flag.txt').read().strip()
-users_db = {}
+
+    
+with app.app_context():
+    db.create_all()
+
 class AESCipher:
     def __init__(self, key):
         self.key = key
@@ -28,33 +40,29 @@ class AESCipher:
 
 cipher = AESCipher(app.secret_key)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
         if not username or not password:
             flash("You missed a spot you silly goose.")
             return redirect(url_for('login'))
-        
-        if username == 'admin':
-            flash("You are not the admin, but would you like a cookie?")
-        
-        if username not in users_db or not check_password_hash(users_db[username], password):
+
+        # Use the get_by_username method to fetch user
+        user = User.get_by_username(username)
+        if not user or not user.check_password(password):
             flash("Invalid credentials")
             return redirect(url_for('login'))
-        
+
         # Prepare the session cookie
         cookie_data = f"username={username}&admin=0"
         encrypted_cookie = cipher.encrypt(cookie_data)
-
-        # Fix: Decode the encrypted cookie before setting it
         encrypted_cookie_str = encrypted_cookie.decode()  # Decode to string
 
         resp = make_response(redirect(url_for('profile')))
@@ -74,18 +82,23 @@ def register():
         if not username or not password:
             flash("You missed a spot you silly goose.")
             return redirect(url_for('register'))
-        if username == 'admin':
-            flash("You cannot register as admin.")
-            return redirect(url_for('register'))
-        # Hash the password securely and store in the in-memory database
-        if username in users_db:
-            flash("User already exists")
-        else:
-            hashed_password = generate_password_hash(password)
-            users_db[username] = hashed_password
-            flash("Registration successful. Please login.")
 
-        return redirect(url_for('login'))
+        # Disallow admin username registration
+        if username.lower() == 'admin':
+            flash("Nice try, but you can't register as admin.")
+            return redirect(url_for('register'))
+
+        # Check if user already exists and create user using create_user function
+        if User.get_by_username(username):
+            flash("User already exists")
+            return redirect(url_for('register'))
+        
+        user = create_user(db, username, password)
+        if isinstance(user, str):  # If there was an error during user creation
+            flash(user)  # Display the error
+        else:
+            flash("Registration successful. Please login.")
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
@@ -118,6 +131,9 @@ def flag():
             return "Access denied. Admin privileges required.", 403
     except:
         return redirect(url_for('login'))
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

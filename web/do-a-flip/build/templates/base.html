@@ -9,7 +9,11 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            background-color: #000;
+            background-image: url("{{ url_for('static', filename='img/retro-landscape-skyline.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #0f0;
         }
         .navbar {
