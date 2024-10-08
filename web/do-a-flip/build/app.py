@@ -26,7 +26,7 @@ class AESCipher:
         self.key = key
         self.pad = lambda x: pad(x, AES.block_size)
         self.unpad = lambda x: unpad(x, AES.block_size)
-
+        self.bs = AES.block_size
     def encrypt(self, data):
         iv = os.urandom(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
@@ -34,8 +34,10 @@ class AESCipher:
 
     def decrypt(self, data):
         raw = b64decode(data)
-        cipher = AES.new(self.key, AES.MODE_CBC, raw[:AES.block_size])
-        return self.unpad(cipher.decrypt(raw[AES.block_size:])).decode()
+        iv = raw[:self.bs]
+        ct = raw[self.bs:]
+        cipher = AES.new(self.key, AES.MODE_CBC, iv=iv)
+        return self.unpad(cipher.decrypt(ct)).decode()
 
 
 cipher = AESCipher(app.secret_key)
@@ -49,26 +51,38 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        print(f"Received {username}:{password} from {request.remote_addr}")
+        # Check for empty fields
         if not username or not password:
-            flash("You missed a spot you silly goose.")
+            flash("You missed a spot you silly goose.", "error")
             return redirect(url_for('login'))
 
-        # Use the get_by_username method to fetch user
+        # Fetch user by username
         user = User.get_by_username(username)
-        if not user or not user.check_password(password):
-            flash("Invalid credentials")
+        if not user:
+            flash("User not found. Please register first.", "error")
             return redirect(url_for('login'))
 
-        # Prepare the session cookie
+        # Check if the password is correct
+        if not user.check_password(password):
+            flash("Invalid password. Please try again.", "error")
+            return redirect(url_for('login'))
+
+        # Prepare the session cookie if login is successful
         cookie_data = f"username={username}&admin=0"
         encrypted_cookie = cipher.encrypt(cookie_data)
         encrypted_cookie_str = encrypted_cookie.decode()  # Decode to string
 
+        # Set the session cookie and redirect to profile
         resp = make_response(redirect(url_for('profile')))
         resp.set_cookie('session', encrypted_cookie_str)  # Set cookie as a string
+
+        # Flash a success message
+        flash("Login successful!", "success")
         return resp
+
     return render_template('login.html')
+
 
 
 
@@ -80,27 +94,29 @@ def register():
 
         # Validate form inputs
         if not username or not password:
-            flash("You missed a spot you silly goose.")
+            flash("You missed a spot you silly goose.", "error")
             return redirect(url_for('register'))
 
-        # Disallow admin username registration
+        # Disallow registration with 'admin' username
         if username.lower() == 'admin':
-            flash("Nice try, but you can't register as admin.")
+            flash("Nice try, but you can't register as admin.", "error")
             return redirect(url_for('register'))
 
-        # Check if user already exists and create user using create_user function
+        # Check if the user already exists
         if User.get_by_username(username):
-            flash("User already exists")
+            flash("User already exists", "error")
             return redirect(url_for('register'))
-        
+
+        # Create user using create_user function
         user = create_user(db, username, password)
         if isinstance(user, str):  # If there was an error during user creation
-            flash(user)  # Display the error
+            flash(user, "error")  # Display the error
         else:
-            flash("Registration successful. Please login.")
+            flash("Registration successful. Please login.", "success")
             return redirect(url_for('login'))
 
     return render_template('register.html')
+
 
 
 @app.route('/profile')
