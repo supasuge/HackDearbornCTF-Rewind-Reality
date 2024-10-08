@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-light">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Congratulations, Admin!</h2>
+                    <p class="text-center">You've successfully hacked the system. Here's your flag:</p>
+                    <div class="alert alert-success text-center">
+                        <strong>{{ flag }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -35,7 +35,6 @@ Private source repository for the CTF occuring at the hack dearborn event. Categ
 > [!NOTE]
 > If it is a static challenge it doesn't need a `Dockerfile`
 
-
 ---
 
 ## How To Add a Challenge

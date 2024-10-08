@@ -1,19 +1,5 @@
 from pwn import *
 
-def inv_mod(a, m):
-    # Computes modular inverse using extended Euclidean Algorithm
-    t, new_t = 0, 1
-    r, new_r = m, a
-    while new_r != 0:
-        quotient = r // new_r
-        t, new_t = new_t, t - quotient * new_t
-        r, new_r = new_r, r - quotient * new_r
-    if r > 1:
-        raise ValueError(f"{a} has no inverse modulo {m}")
-    if t < 0:
-        t += m
-    return t
-
 def extract_random_string(H, S):
     # Function to extract the random string embedded in Q
     N = 137
@@ -52,7 +38,7 @@ def main():
     # Step 4: Extract the random string using the extracted H and S values
     random_string = extract_random_string(H, S)
     print(f"Extracted random string: {random_string}")
-
+    print(f"Sending the extracted random string to the server...")
     # Step 5: Send the extracted random string back to the server
     c.recvuntil(b"Enter the secret string to verify: ")
     c.sendline(random_string.encode())
