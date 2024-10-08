@@ -6,19 +6,19 @@ It works as of right now, gonna fix it up for the socat TCP connection to accept
 ## Dist 
 - `dist/chal.py`
 
----
+***
 
 ## Build
 
 ```sh
 cd crypto/im-feeling-quasi/build
-sudo docker build -t im-feeling-quasi .v
+sudo docker build -t im-feeling-quasi .
 ```
 
----
+***
 
 ## Run
 
 ```sh
-sudo docker run -p 1337:1337 -d im-feeking-quasi
+sudo docker run -p 1337:1337 -d im-feeling-quasi:latest
 ```
