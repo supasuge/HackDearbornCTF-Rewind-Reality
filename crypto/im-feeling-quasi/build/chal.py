@@ -77,7 +77,7 @@ def main():
         # Verifying if user can recreate the hashed random string
         user_input = input("Enter the secret string to verify: ")
         
-        if hashlib.sha3_256(user_input.encode()).hexdigest() == hashlib.sha3_256(random_string.encode()).hexdigest():
+        if hashlib.sha3_256(user_input.encode()).hexdigest() == hashed_string:
             print(f"Flag: {w_w}")
         else:
             print("Incorrect string.")

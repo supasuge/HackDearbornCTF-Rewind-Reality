@@ -1,15 +1,16 @@
 # Checklist:
 
 Each time a challenge is added, please be sure to come here and update the checklist when you can so we can better keep track of things
-- [ ] **Crypto (1)**:
-    - [ ] *Challenge Name 1*
-        - *Difficulty: (Easy/Med/Hard)*
-        - *Description *1-2 sentences max*:
+- **Crypto (5)**:
+    - [x] *I'm feeling quasi!*
+        - *Difficulty: (Easy)*
+        - *Points: 250*
+        - *Description *Find my string and look within.*:
         - *Dist files*: (These are the file to be distributed to the player if any)
     
-    - [ ] *Challenge Name 2*
-        - *Difficulty: (Easy/Med/Hard)*
-        - *Description *1-2 sentences max*:    
+    - [ ] *Oh Sike wrong number...*
+        - *Difficulty: (Hard)*
+        - *Description: *SIDH is lame. But this lattice is... uh. You tell me?*
         - *Dist files*: (These are the file to be distributed to the player if any)
     
     - [ ] *Challenge Name 3*
@@ -29,14 +30,14 @@ Each time a challenge is added, please be sure to come here and update the check
          
 ---
 
-- [ ] **Miscellaneous (2)**:
+- **Miscellaneous (5)**:
     - [ ] *Challenge Name 1*
-        - *Difficulty: (Easy/Med/Hard)*
+        - *Difficulty: ()*
         - *Description *1-2 sentences max*:
         - *Dist files*: (These are the file to be distributed to the player if any)
     
     - [ ] *Challenge Name 2*
-        - *Difficulty: (Easy/Med/Hard)*
+        - *Difficulty: ()*
         - *Description *1-2 sentences max*:
         - *Dist files*: (These are the file to be distributed to the player if any)
     
@@ -57,7 +58,7 @@ Each time a challenge is added, please be sure to come here and update the check
 
 ---
 
-- [ ] **Rev (3)**:
+- **Rev (4)**:
     - [ ] *Challenge Name 1*
         - *Difficulty: (Easy/Med/Hard)*
         - *Description *1-2 sentences max*:
@@ -80,7 +81,7 @@ Each time a challenge is added, please be sure to come here and update the check
 
 ---
 
-- [ ] **Forensics (4)**:
+- **Forensics (5)**:
     - [ ] *Challenge Name 1*
         - *Difficulty: (Easy/Med/Hard)*
         - *Description *1-2 sentences max*:
@@ -108,7 +109,7 @@ Each time a challenge is added, please be sure to come here and update the check
     
 ---
 
-- [ ] **Web Exploitation (5)**:
+- **Web Exploitation (5)**:
     - [ ] *Challenge Name 1*
         - *Difficulty: (Easy/Med/Hard)*
         - *Description *1-2 sentences max*:
@@ -135,7 +136,7 @@ Each time a challenge is added, please be sure to come here and update the check
         - *Dist files*: (These are the file to be distributed to the player if any)****
 
 
-- [ ] **Binary Exploitation (6)** 
+- **Binary Exploitation (5)** 
     - [ ] *Challenge Name 1*
         - *Difficulty: (Easy/Med/Hard)*
         - *Description *1-2 sentences max*:
