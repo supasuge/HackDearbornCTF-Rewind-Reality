@@ -4,7 +4,7 @@
         - *Points: 250*
         - *Description*: Find my string and look within.
         - *Dist files*: (These are the file to be distributed to the player if any)
-        - [ ] `hd3{what_r_cafe_hours_again}`
+        - [x] `hd3{what_r_cafe_hours_again}`
     
     - [ ] *Oh Sike wrong number...*
         - *Difficulty: (Hard)*
@@ -12,11 +12,11 @@
         - *Dist files*: (These are the file to be distributed to the player if any)
         - [ ] `hd3{its_raining_aliens_im_in_an_umbrella_bag}`
     
-    - [ ] *Challenge Name 3*
-        - *Difficulty: (Med)*
-        - *Description*: 1-2 sentences max.
-        - *Dist files*: (These are the file to be distributed to the player if any)
-        - [ ] `hd3{reading_lyceum_upstairs}`
+    - [x] *Hilly*
+        - *Difficulty: (Easy)*
+        - *Description*: Are you up for a ride!?
+        - *Dist files*: `chal.py`
+        - [x] `hd3{reading_lyceum_upstairs}`
     
     - [ ] *Challenge Name 4*
         - *Difficulty: (Easy)*
@@ -150,10 +150,10 @@
         - *Dist files*: (These are the file to be distributed to the player if any)
         - [ ] `hd3{HOLEY_MOLEY_wALLS_cRUMBLING}`
     
-    - [ ] *Challenge Name 5*
-        - *Difficulty: (Med)*
-        - *Description*: 1-2 sentences max.
-        - *Dist files*: (These are the file to be distributed to the player if any)
+    - [ ] *Do a Flip!*
+        - *Difficulty: (Hard)*
+        - *Description*: Just do a flip, trust me bro.
+        - *Dist files*: `challenge.tar.xz`
         - [ ] `hd3{my_fav_flag_literally}`
 
 ---
