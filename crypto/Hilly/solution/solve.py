@@ -5,9 +5,9 @@ def decrypt(matrix, words):
     alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_{}"
     char_to_index = {c: i for i, c in enumerate(alph)}
     inverse_matrix = Matrix(matrix).inv_mod(64)
-    # this one liner took much longer than I would like to admit to write and get right. Bathe in its glory, for it is beautiful and could be considered a war crime in some countries.
+    # this one liner took much longer than I would like to admit to write and get right. Bathe in its glory
     plaintext = ''.join( 
-        alph[int(x) % 64]     # I have way too much time on my hands sometimes
+        alph[int(x) % 64]  
         for block_start in range(0, len(words), 8)
         for x in (inverse_matrix * Matrix([char_to_index.get(c, 0) for c in words[block_start:block_start + 8]])).tolist()
         for x in x  
