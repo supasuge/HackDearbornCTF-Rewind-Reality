@@ -12,28 +12,29 @@
 ## Crypto
 - **Crypto (5)**:
     - [x] **I'm feeling quasi!**
-        - *Difficulty: (Easy)*
+        - *Difficulty: (Medium)*
         - *Points: 250*
         - *Description*: Feeling quasi-confused? Me too... 
         - *Dist files*: 
         - [x] `hd3{what_r_cafe_hours_again}`
     
     - [ ] **Turing Test**
-        - *Difficulty: (Hard)*
-        - *Description*: SIDH is lame. But this lattice is... uh. You tell me?
+        - *Difficulty: (Medium)*
+        - *Points: 200*
+        - *Description*: Can you pass the *Turing Test*? 
         - *Dist files*: (These are the file to be distributed to the player if any)
-        - [ ] `hd3{its_raining_aliens_im_in_an_umbrella_bag}`
+        - [ ] `hdthreeitsrainingaliensiminanumbrellabag`
     
     - [x] **Hilly**
         - *Difficulty: (Easy)*
-        - *Points*
+        - *Points: 100*
         - *Description*: Are you up for a ride!?
         - *Dist files*: `chal.py`
         - [x] `hd3{reading_lyceum_upstairs}`
     
     - [x] **Combined Multiple Recursive... what?**
         - *Difficulty: (Hard)*
-        - *Description*: Chinchilly binbilly I did my best my 
+        - *Description*: idk 
         - *Dist files*: (These are the file to be distributed to the player if any) 
         - [x] `hd3{cis_building_in_the_uc}` - Padding is added to the flag for the sake of the challenge, see the flag in build/flag.txt
     

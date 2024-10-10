@@ -1,0 +1,6 @@
+Note that '{' and '}' have been removed from the flag and is alphabetical only.
+Ciphertext = azjlfwqzciqtotuurvxhqdnqkspedmsfqnwheowp
+Rotors:
+I: 17
+II: 1
+III: ???
