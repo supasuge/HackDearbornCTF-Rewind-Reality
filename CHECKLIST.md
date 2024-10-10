@@ -18,7 +18,7 @@
         - *Dist files*: 
         - [x] `hd3{what_r_cafe_hours_again}`
     
-    - [ ] **Oh Sike wrong number...**
+    - [ ] **Turing Test**
         - *Difficulty: (Hard)*
         - *Description*: SIDH is lame. But this lattice is... uh. You tell me?
         - *Dist files*: (These are the file to be distributed to the player if any)
@@ -34,7 +34,7 @@
     - [x] **Combined Multiple Recursive... what?**
         - *Difficulty: (Hard)*
         - *Description*: Chinchilly binbilly I did my best my 
-        - *Dist files*: (These are the file to be distributed to the player if any)
+        - *Dist files*: (These are the file to be distributed to the player if any) 
         - [x] `hd3{cis_building_in_the_uc}` - Padding is added to the flag for the sake of the challenge, see the flag in build/flag.txt
     
     - [ ] **Challenge Name 5**
