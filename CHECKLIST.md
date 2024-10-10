@@ -155,11 +155,12 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [x] `hd3{heating_up_the_commons}`
     
-- [ ] **Challenge Name 2**
+- [x] **Time will tell**
     - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
+    - *Points: 250*
+    - *Description*: Access the protected route. Brute-forcing will take too long
     - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{good_citizens_give_suggestions}`
+    - [x] `hd3{good_citizens_give_suggestions}`
     
 - [ ] **Challenge Name 3**
     - *Difficulty: (Hard)*
