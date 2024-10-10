@@ -1,6 +1,7 @@
 from sympy import Matrix
-
-
+from colorama import Fore, Style, just_fix_windows_console
+import string
+just_fix_windows_console()
 def decrypt(matrix, words):
     alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_{}"
     char_to_index = {c: i for i, c in enumerate(alph)}
@@ -18,16 +19,17 @@ def decrypt(matrix, words):
 
 if __name__ == '__main__':
     SECRET_KEY = [
-        [45, 61, 52, 34, 29, 53, 37, 49],
-        [1, 10, 17, 39, 9, 21, 51, 13],
-        [25, 24, 47, 39, 60, 30, 35, 2],
-        [47, 9, 53, 60, 40, 36, 0, 63],
-        [3, 29, 39, 16, 26, 24, 49, 31],
-        [39, 61, 57, 31, 9, 0, 10, 17],
-        [17, 26, 38, 44, 7, 4, 62, 62],
-        [41, 47, 36, 59, 3, 59, 8, 48],
-]
+        [49, 47, 39, 23, 20, 58, 19, 15],
+        [53, 14, 48, 23, 16, 17, 12, 22],
+        [14, 28, 19, 2, 22, 54, 13, 62],
+        [60, 55, 51, 7, 8, 32, 11, 10],
+        [13, 52, 29, 14, 18, 48, 5, 16],
+        [50, 7, 51, 16, 27, 14, 9, 9],
+        [60, 47, 35, 9, 19, 21, 28, 33],
+        [13, 16, 59, 35, 57, 39, 48, 58],
+    ]
 
-    Ciphertext = "7bnp_CY_yWxlhfBlyVmj9UvdtVWmHKJo"
+    Ciphertext = "zL9JBZ8k{XCEGC}uioKacFA1EKXrPA}H"
+
     pt = decrypt(SECRET_KEY, Ciphertext).rstrip('x')
-    print(pt)
+    print(Fore.GREEN + Style.BRIGHT + pt + Style.RESET_ALL)

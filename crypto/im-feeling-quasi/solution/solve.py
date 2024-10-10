@@ -9,16 +9,15 @@ def extract_random_string(H, S):
     return random_string.rstrip('?')
 
 def main():
-    # Connecting to the challenge
-    h, p = 'localhost', 1337  # Replace with actual host and port
+    h, p = '0.cloud.chals.io', 31346  # Replace with actual host and port
     c = remote(h, p)
 
-    # Step 1: Receive the hash string from the server
+    # Step 1: Get hash fromm server
     c.recvuntil(b'Hashed value to match: ')
     hashed_value = c.recvline().strip().decode()
     print(f"Hashed value to match: {hashed_value}")
 
-    # Step 2: Interact and send the input message
+    # Step 2: send the input message
     c.recvuntil(b"Enter your message to test: ")
     msg = "A"  # We are sending a simple message 'A' as the input
     c.sendline(msg.encode())

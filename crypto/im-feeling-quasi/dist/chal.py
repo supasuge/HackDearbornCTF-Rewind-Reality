@@ -13,7 +13,7 @@ def flag() -> str:
         with open(pth, "r") as f:
             flag_content: str = f.read().rstrip()
         if not flag_content:
-            raise Exception("Flag file is empty -_-")
+            raise ValueError("You done goofed.")
         return flag_content
     except Exception as e:
         raise Exception(f"Error reading flag: {e}")
@@ -49,7 +49,7 @@ def main() -> None:
         hashed_string: str = hashlib.sha3_256(random_string.encode()).hexdigest()
         print(f"Hashed value to match: {hashed_string}")
         
-        message: str = input("Enter your message to test: ")
+        message: str = input("Enter your message: ")
         H: List[int] = get_hash(message)
         Q: List[int] = generate_Q(random_string, flag_start=0)
         S: List[int] = compute_S(H, Q)

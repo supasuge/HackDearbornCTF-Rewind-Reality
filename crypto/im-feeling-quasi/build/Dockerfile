@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS builder
 
 
 RUN apt-get update -y && \
@@ -8,10 +8,6 @@ RUN apt-get update -y && \
     apt-get clean -y
 
 WORKDIR /app
-
-
-
-
 
 COPY chal.py .
 COPY flag.txt .

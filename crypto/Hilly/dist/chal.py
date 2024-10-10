@@ -2,8 +2,9 @@
 import numpy as np
 import secrets
 import gmpy2
+ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_{}"
 
-def generate_secret_key(matrix_size=8, alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_{}"):
+def generate_secret_key(matrix_size=8, alphabet=ALPHABET):
     alphabet_size = len(alphabet)
     
     def is_invertible(matrix, modulus):
@@ -53,7 +54,6 @@ def main():
     OUT = ""
     M = 8  # 8x8 
     SECRET_KEY = generate_secret_key(M)
-    ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_{}"
     OUT+="SECRET_KEY = [\n"
     for row in SECRET_KEY:
         OUT += f"    {row},\n"
