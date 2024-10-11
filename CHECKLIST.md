@@ -114,11 +114,11 @@
 ## Forensics
 
 - **Forensics (5)**:
-- [ ] *Picture Perfect Chaos*
+- [x] *Picture Perfect Chaos*
     - *Difficulty: (Hard)*
     - *Description*: Wanda's been up to no good in her hex at WestView. We've got live video footage and someone from the inside wrote a top secret message for us. Can you frame it right?
     - *Dist files*: final_video.mp4
-    - [ ] `hd3{front_view_of_the_workshop_room}`
+    - [x] `hd3{front_view_of_the_workshop_room}`
     
 - [ ] *Challenge Name 2*
     - *Difficulty: (Hard)*
@@ -126,11 +126,11 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{catching_the_news_downstairs}`
     
-- [ ] *Challenge Name 3*
+- [x] *Challenge Name 3*
     - *Difficulty: (Easy)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{posing_with_my_deer_friends}`
+    - *Description*: POV: you didn’t attend the pre-hackathon. Look closer to see what you missed!
+    - *Dist files*: shouryan.jpeg
+    - [x] `hd3{posing_with_my_deer_friends}`
     
 - [ ] *Challenge Name 4*
     - *Difficulty: (Med)*
