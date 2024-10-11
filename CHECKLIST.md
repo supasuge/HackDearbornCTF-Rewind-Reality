@@ -89,7 +89,7 @@
     - *Difficulty: (Easy)*
     - *Description*: 1-2 sentences max.
     - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{front_view_of_the_workshop_room}`
+    - [ ] `hd3{built_in_checkerboard_table}`
     
 - [ ] *Challenge Name 2*
     - *Difficulty: (Med)*
@@ -114,11 +114,11 @@
 ## Forensics
 
 - **Forensics (5)**:
-- [ ] *Challenge Name 1*
-    - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{built_in_checkerboard_table}`
+- [ ] *Picture Perfect Chaos*
+    - *Difficulty: (Hard)*
+    - *Description*: Wanda's been up to no good in her hex at WestView. We've got live video footage and someone from the inside wrote a top secret message for us. Can you frame it right?
+    - *Dist files*: final_video.mp4
+    - [ ] `hd3{front_view_of_the_workshop_room}`
     
 - [ ] *Challenge Name 2*
     - *Difficulty: (Hard)*
