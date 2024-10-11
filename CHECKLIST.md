@@ -90,7 +90,7 @@
     - *Difficulty: (Easy)*
     - *Description*: 1-2 sentences max.
     - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{front_view_of_the_workshop_room}`
+    - [ ] `hd3{built_in_checkerboard_table}`
     
 - [ ] *Challenge Name 2*
     - *Difficulty: (Med)*
@@ -115,11 +115,11 @@
 ## Forensics
 
 - **Forensics (5)**:
-- [ ] *Challenge Name 1*
-    - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{built_in_checkerboard_table}`
+- [x] *Picture Perfect Chaos*
+    - *Difficulty: (Hard)*
+    - *Description*: Wanda's been up to no good in her hex at WestView. We've got live video footage and someone from the inside wrote a top secret message for us. Can you frame it right?
+    - *Dist files*: final_video.mp4
+    - [x] `hd3{front_view_of_the_workshop_room}`
     
 - [ ] *Challenge Name 2*
     - *Difficulty: (Hard)*
@@ -127,17 +127,17 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{catching_the_news_downstairs}`
     
-- [ ] *Challenge Name 3*
+- [x] *Steg & Seek*
     - *Difficulty: (Easy)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{posing_with_my_deer_friends}`
+    - *Description*: POV: you didn’t attend the pre-hackathon. Look closer to see what you missed!
+    - *Dist files*: shouryan.jpeg
+    - [x] `hd3{posing_with_my_deer_friends}`
     
-- [ ] *Challenge Name 4*
+- [x] *bits-n-pieces*
     - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{fake_trees_r_green_like_me}`
+    - *Description*: Sometimes, the smallest bits hold the biggest secrets!
+    - *Dist files*: hd3_logo.png
+    - [x] `hd3{fake_trees_r_green_like_me}`
     
 - [ ] *0x157 Special*
     - *Difficulty: (Easy)*
