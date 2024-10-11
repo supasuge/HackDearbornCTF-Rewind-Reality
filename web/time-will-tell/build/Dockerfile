@@ -14,6 +14,7 @@ WORKDIR /app
 COPY requirements.txt /app/
 COPY app.py /app/
 COPY flag.txt /app/
+COPY templates/ /app/templates/
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
