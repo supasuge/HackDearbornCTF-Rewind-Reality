@@ -4,12 +4,13 @@ from Crypto.Util.Padding import pad, unpad
 from base64 import b64encode, b64decode
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-import time
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User, create_user
 
 app = Flask(__name__)
-
+TIME = lambda fmt:  datetime.now().strftime(fmt)
+TIME_FMT = "%Y-%m-%d %H:%M:%S"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)

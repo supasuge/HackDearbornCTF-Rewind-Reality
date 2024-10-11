@@ -8,7 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
-    session = db.Column(db.String(72), nullable=False)
+    session = db.Column(db.String(256), nullable=True) # set to 256 in case someone uses long names and encrypted session cookie is more than 48+ chars
     
     
     def set_password(self, password):

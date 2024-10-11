@@ -34,6 +34,7 @@
     
     - [x] **Combined Multiple Recursive... what?**
         - *Difficulty: (Hard)*
+        - *Points: 400*
         - *Description*: idk 
         - *Dist files*: (These are the file to be distributed to the player if any) 
         - [x] `hd3{cis_building_in_the_uc}` - Padding is added to the flag for the sake of the challenge, see the flag in build/flag.txt
@@ -61,11 +62,11 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{this_guy_thinks_the_uc_is_named_after_him}`
     
-- [ ] *Challenge Name 3*
+- [x] **Beep boop boop beeeeeeeep**
     - *Difficulty: (Hard)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{is_these_windows_tinted_with_umd}`
+    - *Description*: Buster just dropped a 2 new track, rumor has it he's really out here trying to Rewind reality with his taste for "techno" music we can call it? Anyways, go check it out on soundcloud! Im sure you can find him... he's obsessed with #RewindReality hashtags! Listen to some of his music, this will lead you to the flag or at least something along those lines... literally. 
+    - *Dist files*: 
+    - [x] `hd3{is_these_windows_tinted_with_umd}`
     
 - [ ] **Trilateration**
     - *Points: 350*
