@@ -126,17 +126,17 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{catching_the_news_downstairs}`
     
-- [x] *Challenge Name 3*
+- [x] *Steg & Seek*
     - *Difficulty: (Easy)*
     - *Description*: POV: you didn’t attend the pre-hackathon. Look closer to see what you missed!
     - *Dist files*: shouryan.jpeg
     - [x] `hd3{posing_with_my_deer_friends}`
     
-- [ ] *Challenge Name 4*
+- [x] *bits-n-pieces*
     - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{fake_trees_r_green_like_me}`
+    - *Description*: Sometimes, the smallest bits hold the biggest secrets!
+    - *Dist files*: hd3_logo.png
+    - [x] `hd3{fake_trees_r_green_like_me}`
     
 - [ ] *0x157 Special*
     - *Difficulty: (Easy)*
