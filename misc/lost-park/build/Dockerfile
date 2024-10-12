@@ -11,7 +11,7 @@ COPY serv.py /app/serv.py
 RUN chown -R hd3:hd3 /app && \
     chmod -R 755 /app
 
-EXPOSE 9494
+EXPOSE 9423
 
 USER hd3
 

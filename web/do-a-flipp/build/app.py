@@ -1,166 +1,67 @@
-from flask import Flask, request, render_template, make_response, redirect, url_for, flash
-from werkzeug.security import generate_password_hash, check_password_hash
-import os
-from flask_sqlalchemy import SQLAlchemy
-from models import db, User, create_user
-from cipher import AESCipher, gen_cookie
+import random
+import socketserver
+import sys
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
 
-app = Flask(__name__)
+# Server configuration
+host, port = '0.0.0.0', 8000
 
-# Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
+# Greeting banner
+greeting = """hi"""
 
-FLAG = open('flag.txt').read().strip()
+# Secret key and initialization vector for AES
+key = get_random_bytes(16)
+iv = get_random_bytes(16)
+flag = open('flag.txt', 'r').read().strip()
 
-with app.app_context():
-    db.create_all()
-COOKIE_KEY = os.urandom(16)
+def encrypt_data(data):
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    enc = cipher.encrypt(pad(data.encode(), 16, style='pkcs7'))
+    return enc.hex()
 
-FLAG = open('flag.txt').read().strip()
+def decrypt_data(encrypted_params):
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    padded_params = cipher.decrypt(bytes.fromhex(encrypted_params))
+    return unpad(padded_params, 16, style='pkcs7').decode()
 
-    
-with app.app_context():
-    db.create_all()
-    
-cipher = AESCipher(COOKIE_KEY)
 
-from flask import Response
-class CustomResponse(Response):
-    def __init__(self, response=None, status=None, headers=None, mimetype=None, content_type=None, direct_passthrough=False):
-        super().__init__(response, status, headers, mimetype, content_type, direct_passthrough)
-        if hasattr(self, 'session'):
-            # Set the custom 'X-Session' header with the encrypted session data
-            self.headers['X-Session'] = self.session
+class DoAFlip:
 
-app.response_class = CustomResponse
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        print(f"Received {username}:{password} from {request.remote_addr}")
+    def handle(self):
+        try:
+            print(f"{greeting}")
+            # Step 1: Send the encrypted token representing 'access=guest' to the user
+            auth_token = "admin=0"
+            print("Welcome to the the flipped API system.")
+            print("We put the 'secure' in 'security'!")
+            print("Your current access level is: guest")
+           
+            encrypted_token = iv.hex() + encrypt_data(auth_token)
+            print(f"Here's your authentication token: {encrypted_token}\n")
+            while True:
+            # Step 2: Receive the modified encrypted token from the user
+                encrypted_input = input("Provide the modified encrypted token to elevate your access level: \n")
         
-        # Validate input
-        if not username or not password:
-            return redirect(url_for('login', message="You missed a spot you silly goose."))
+            # Step 3: Attempt to decrypt the modified token
+                final_dec_msg = decrypt_data(encrypted_input)
 
-        # Fetch user by username
-        user = User.get_by_username(username)
-        if not user:
-            return redirect(url_for('login', message="User not found. Please register first."))
+            # Step 4: Check if the user has successfully changed 'access=guest' to 'access=authorized'
+                if "admin=1" in final_dec_msg:
+                    print("Access level elevated! You are now authorized!")
+                    print(f"Flag: {flag}")
+                    break
+                else:
+                    print("Access level not elevated. You are still a guest.")
+                    continue
+            
+        except Exception as e:
+            print("error occurred: " + str(e))
 
-        # Verify password
-        if not user.check_password(password):
-            return redirect(url_for('login', message="Invalid password. Please try again."))
-
-        # Create session data
-        session_data = f"username={username}&admin=0"
-        encrypted_session = cipher.encrypt(session_data)  # Hex-encoded
-
-        # Create response with 'X-Session' header
-        resp = make_response(redirect(url_for('profile')))
-        resp.session = encrypted_session  # Custom attribute for CustomResponse
-
-        return resp
-
-    # Handle GET request
-    message = request.args.get('message', '')
-    return render_template('login.html', message=message)
-
-
-
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # Validate input
-        if not username or not password:
-            return redirect(url_for('register', message="You missed a spot you silly goose."))
-
-        # Prevent registering as 'admin'
-        if username.lower() == 'admin':
-            return redirect(url_for('register', message="Nice try, but you can't register as admin."))
-
-        # Check if user exists
-        if User.get_by_username(username):
-            return redirect(url_for('register', message="User already exists"))
-
-        # Create new user
-        user = create_user(db, username, password)
-        if isinstance(user, str):  # Error during user creation
-            return redirect(url_for('register', message=user))
-        else:
-            return redirect(url_for('login', message="Registration successful. Please login."))
-
-    # Handle GET request
-    message = request.args.get('message', '')
-    return render_template('register.html', message=message)
-
-
-
-@app.route('/profile')
-def profile():
-    # Retrieve 'X-Session' header from the request
-    encrypted_session = request.headers.get('X-Session')
-    if not encrypted_session:
-        return redirect(url_for('login', message="No session found. Please log in."))
-
-    try:
-        # Decrypt session data
-        cookie_data = cipher.decrypt(encrypted_session)  # Decrypted string
-
-        # Check for admin privileges
-        if 'admin=1' in cookie_data:
-            return redirect(url_for('flag'))
-        
-        # Extract username
-        username = None
-        for part in cookie_data.split('&'):
-            if part.startswith('username='):
-                username = part.split('=')[1]
-                break
-        
-        if not username:
-            return redirect(url_for('login', message="Invalid session data."))
-
-        # Render profile
-        return render_template('profile.html', username=username)
-
-    except Exception as e:
-        app.logger.error(f"Error processing profile: {str(e)}")
-        return redirect(url_for('login', message="An error occurred. Please log in again."))
-
-
-@app.route('/flag')
-def flag():
-    encrypted_session_hdr = request.headers.get('X-Session')
-    if not encrypted_session_hdr:
-        return redirect(url_for('login'))
-    
-    try:
-        cookie_data = cipher.decrypt(encrypted_session_hdr)
-        if 'admin=1' in cookie_data:
-            return render_template('flag.html', flag=FLAG)
-    
-        else:
-            return "Access denied. Admin privileges required.", 403
-    
-    except:
-        return redirect(url_for('login', message="Invalid session data."))
-
-
+def main():
+    DoAFlip().handle()
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()

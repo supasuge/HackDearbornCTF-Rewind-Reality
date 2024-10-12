@@ -39,11 +39,11 @@
         - *Dist files*: (These are the file to be distributed to the player if any) 
         - [x] `hd3{cis_building_in_the_uc}` - Padding is added to the flag for the sake of the challenge, see the flag in build/flag.txt
     
-    - [ ] **Challenge Name 5**
+    - [x] **Cop or Smith?**
         - *Difficulty: (Hard)*
-        - *Description*: 1-2 sentences max.
+        - *Description*: I don't know... you tell me.
         - *Dist files*: (These are the file to be distributed to the player if any)
-        - [ ] `hd3{following_bruce_the_goose}`
+        - [x] `hd3{following_bruce_the_goose}`
 
 ---
 
@@ -69,12 +69,12 @@
     - *Dist files*: 
     - [x] `hd3{is_these_windows_tinted_with_umd}`
     
-- [ ] **Trilateration**
+- [x] **Hd3 jail**
     - *Points: 350*
     - *Difficulty: (Med)*
     - *Description*: 1-2 sentences max.
     - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{so_thirsty_downstairs}`
+    - [x] `hd3{so_thirsty_downstairs}`
     
 - [ ] *Challenge Name 5*
     - *Difficulty: (Easy)*
@@ -176,11 +176,11 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{HOLEY_MOLEY_wALLS_cRUMBLING}`
     
-- [ ] **Do a Flip!**
-    - *Difficulty: (Hard)*
+- [x] **Bliggity Blog**
+    - *Difficulty: (Easy)*
     - *Description*: Just do a flip, trust me bro.
-    - *Dist files*: `challenge.tar.xz`
-    - [ ] `hd3{my_fav_flag_literally}`
+    - *Dist files*: `bliggity-blog.tar.xz`
+    - [x] `hd3{my_fav_flag_literally}`
 
 ---
 
