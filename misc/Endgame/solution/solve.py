@@ -2,85 +2,71 @@ from pwn import *
 import re
 import math
 import numpy as np
+from scipy.optimize import least_squares
 
-# Trilateration calculation using three spheres in ECEF
-def trilaterate_ecef(P1, P2, P3, r1, r2, r3):
-    P1 = np.array(P1)
-    P2 = np.array(P2)
-    P3 = np.array(P3)
+# Haversine distance function
+def haversine_distance(lat1, lon1, lat2, lon2):
+    # Earth radius in kilometers
+    R = 6371.0
+    # Convert latitude and longitude from degrees to radians
+    phi1 = np.radians(lat1)
+    phi2 = np.radians(lat2)
+    delta_phi = np.radians(lat2 - lat1)
+    delta_lambda = np.radians(lon2 - lon1)
+    # Haversine formula
+    a = np.sin(delta_phi / 2.0)**2 + \
+        np.cos(phi1) * np.cos(phi2) * np.sin(delta_lambda / 2.0)**2
+    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+    # Calculate distance
+    distance = R * c
+    return distance
 
-    ex = P2 - P1
-    ex_norm = np.linalg.norm(ex)
-    if ex_norm == 0:
-        return None
-    ex = ex / ex_norm
+# Residuals function for least squares optimization
+def residuals(x, towers):
+    lon, lat = x  # Swap order: x[0] is longitude, x[1] is latitude
+    res = []
+    for tower in towers:
+        tower_lat, tower_lon, dist = tower
+        calc_dist = haversine_distance(lat, lon, tower_lat, tower_lon)
+        res.append(calc_dist - dist)
+    return res
 
-    P3P1 = P3 - P1
-    i = np.dot(ex, P3P1)
-    ey = P3P1 - i * ex
-    ey_norm = np.linalg.norm(ey)
-    if ey_norm == 0:
-        return None
-    ey = ey / ey_norm
+# Trilateration function using least squares optimization with improvements
+def trilaterate(towers):
+    # Define bounds for latitude and longitude (USA boundaries)
+    lat_bounds = (24.396308, 49.384358)
+    lon_bounds = (-124.848974, -66.885444)
 
-    ez = np.cross(ex, ey)
+    # Prepare initial guesses (average position and tower positions)
+    initial_guesses = [
+        (sum(t[1] for t in towers) / len(towers), sum(t[0] for t in towers) / len(towers))
+    ] + [(t[1], t[0]) for t in towers]
 
-    d = np.linalg.norm(P2 - P1)
-    j = np.dot(ey, P3P1)
+    best_result = None
+    best_cost = float('inf')
 
-    # Check for coplanar points
-    if j == 0:
-        return None
+    for guess in initial_guesses:
+        result = least_squares(
+            residuals,
+            guess,
+            args=(towers,),
+            bounds=([lon_bounds[0], lat_bounds[0]], [lon_bounds[1], lat_bounds[1]]),
+            max_nfev=2000,
+            ftol=1e-12,
+            xtol=1e-12,
+            verbose=0
+        )
 
-    x = (r1**2 - r2**2 + d**2) / (2 * d)
-    y = (r1**2 - r3**2 + i**2 + j**2) / (2 * j) - (i / j) * x
-    z_sq = r1**2 - x**2 - y**2
+        if result.success:
+            if result.cost < best_cost:
+                best_result = result
+                best_cost = result.cost
 
-    if z_sq < 0:
-        return None
-
-    z = math.sqrt(z_sq)
-
-    result1 = P1 + x * ex + y * ey + z * ez
-    result2 = P1 + x * ex + y * ey - z * ez
-
-    # Choose the result closest to P1
-    dist1 = np.linalg.norm(result1 - P1)
-    dist2 = np.linalg.norm(result2 - P1)
-
-    if dist1 < dist2:
-        return result1
-    else:
-        return result2
-
-# Convert lat, lon to ECEF coordinates
-def latlon_to_ecef(lat, lon):
-    R = 6371.0  # Earth's radius in km
-    lat_rad = math.radians(lat)
-    lon_rad = math.radians(lon)
-    x = R * math.cos(lat_rad) * math.cos(lon_rad)
-    y = R * math.cos(lat_rad) * math.sin(lon_rad)
-    z = R * math.sin(lat_rad)
-    return [x, y, z]
-
-# Convert ECEF coordinates back to lat, lon
-def ecef_to_latlon(x, y, z):
-    R = math.sqrt(x**2 + y**2 + z**2)
-    lat_rad = math.asin(z / R)
-    lon_rad = math.atan2(y, x)
-    lat = math.degrees(lat_rad)
-    lon = math.degrees(lon_rad)
-    return lat, lon
-
-def trilaterate(lat1, lon1, r1, lat2, lon2, r2, lat3, lon3, r3):
-    P1 = latlon_to_ecef(lat1, lon1)
-    P2 = latlon_to_ecef(lat2, lon2)
-    P3 = latlon_to_ecef(lat3, lon3)
-
-    result = trilaterate_ecef(P1, P2, P3, r1, r2, r3)
-    if result is None:
+    if best_result is None:
+        print("Optimization failed.")
         return None, None
-    lat, lon = ecef_to_latlon(result[0], result[1], result[2])
+
+    lon, lat = best_result.x  # Extract longitude and latitude
     return round(lat, 6), round(lon, 6)
 
 def main():
@@ -115,37 +101,24 @@ def main():
     # Iterate through five problems
     for problem_num in range(1, 6):
         try:
-            # Receive problem header
-            problem_header = io.recvuntil(f"Problem {problem_num}:".encode(), timeout=10)
-            print(problem_header.decode())
+            # Receive up to the prompt
+            problem_data = io.recvuntil(f"Enter your answer for Problem {problem_num}: ".encode(), timeout=10)
+            print(problem_data.decode())
         except EOFError:
-            print("Connection closed by server during problem header reception.")
+            print("Connection closed by server during problem reception.")
             io.close()
             return
         except Exception as e:
-            print(f"Error receiving problem header: {e}")
-            io.close()
-            return
-
-        try:
-            # Receive base station details up to "Provide the (latitude, longitude)"
-            base_info = io.recvuntil(b"Provide the (latitude, longitude)", timeout=10)
-            print(base_info.decode())
-        except EOFError:
-            print("Connection closed by server during base station details reception.")
-            io.close()
-            return
-        except Exception as e:
-            print(f"Error receiving base station details: {e}")
+            print(f"Error receiving problem data: {e}")
             io.close()
             return
 
         # Extract base station details using regex
         # Pattern: BaseStationName: Location = (lat, lon), Distance = r.rr km
         pattern = r"(\w+): Location = \(([-\d\.]+), ([-\d\.]+)\), Distance = ([\d\.]+) km"
-        towers = re.findall(pattern, base_info.decode())
+        towers_data = re.findall(pattern, problem_data.decode())
 
-        if len(towers) != 3:
+        if len(towers_data) != 3:
             print("Failed to parse base station information.")
             # Optionally, send an incorrect answer to prompt server to exit
             io.sendline(b"0.00,0.00")
@@ -153,22 +126,18 @@ def main():
             return
 
         # Parse tower data
-        tower1 = towers[0]
-        tower2 = towers[1]
-        tower3 = towers[2]
+        towers = []
+        for tower in towers_data:
+            name, lat_str, lon_str, dist_str = tower
+            lat, lon, dist = float(lat_str), float(lon_str), float(dist_str)
+            towers.append((lat, lon, dist))
 
-        name1, lat1, lon1, r1 = tower1
-        name2, lat2, lon2, r2 = tower2
-        name3, lat3, lon3, r3 = tower3
-
-        lat1, lon1, r1 = float(lat1), float(lon1), float(r1)
-        lat2, lon2, r2 = float(lat2), float(lon2), float(r2)
-        lat3, lon3, r3 = float(lat3), float(lon3), float(r3)
-
-        print(f"Parsed Towers:\n  {name1}: ({lat1}, {lon1}), Distance: {r1} km\n  {name2}: ({lat2}, {lon2}), Distance: {r2} km\n  {name3}: ({lat3}, {lon3}), Distance: {r3} km")
+        print("Parsed Towers:")
+        for idx, (lat, lon, dist) in enumerate(towers):
+            print(f"  Tower {idx+1}: ({lat}, {lon}), Distance: {dist} km")
 
         # Perform trilateration to find phone location
-        phone_lat, phone_lon = trilaterate(lat1, lon1, r1, lat2, lon2, r2, lat3, lon3, r3)
+        phone_lat, phone_lon = trilaterate(towers)
 
         if phone_lat is None or phone_lon is None:
             print("Trilateration failed due to invalid input.")
@@ -186,13 +155,9 @@ def main():
 
         # Receive validation response
         try:
-            # Assuming the response is a single line
-            response = io.recvline(timeout=10)
-            if not response:
-                print("No response received. Connection might be closed by the server.")
-                io.close()
-                return
-            response_decoded = response.decode().strip()
+            # Receive until you get "Correct!" or "Incorrect"
+            response = io.recvuntil([b"Correct!", b"Incorrect"], timeout=10)
+            response_decoded = response.decode()
             print(response_decoded)
         except EOFError:
             print("Connection closed by server after sending the answer.")

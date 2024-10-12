@@ -147,9 +147,11 @@ class TrilaterationHandler(socketserver.StreamRequestHandler):
         try:
             # Send Banner
             self.wfile.write(BANNER.encode())
+            self.wfile.flush()
 
             # Send Challenge Information
             self.wfile.write(CHALLENGE_INFO.encode())
+            self.wfile.flush()
 
             # Initialize correct answer count
             correct_answers = 0
@@ -172,14 +174,17 @@ class TrilaterationHandler(socketserver.StreamRequestHandler):
                 problem_text += "Provide the (latitude, longitude) coordinates of the mobile device's location.\n"
                 problem_text += "Format: lat,lon (e.g., 12.34,-56.78)\n"
                 self.wfile.write(problem_text.encode())
+                self.wfile.flush()
 
                 # Prompt for answer
                 self.wfile.write(f"\nEnter your answer for Problem {problem_num}: ".encode())
+                self.wfile.flush()
 
                 # Receive answer
                 answer = self.rfile.readline().decode().strip()
                 if not answer:
                     self.wfile.write("No input received. Exiting.\n".encode())
+                    self.wfile.flush()
                     break
 
                 try:
@@ -187,6 +192,7 @@ class TrilaterationHandler(socketserver.StreamRequestHandler):
                 except:
                     self.wfile.write("Invalid format. Use lat,lon with decimal points.\n".encode())
                     self.wfile.write("Exiting due to invalid input.\n".encode())
+                    self.wfile.flush()
                     break
 
                 # Get expected location
@@ -200,16 +206,20 @@ class TrilaterationHandler(socketserver.StreamRequestHandler):
                 if error_distance <= 1.0:
                     correct_answers += 1
                     self.wfile.write("Correct!\n".encode())
+                    self.wfile.flush()
                 else:
                     self.wfile.write(f"Incorrect. The correct location was ({expected_lat:.6f}, {expected_lon:.6f}).\n".encode())
                     self.wfile.write("You've failed to locate the device accurately. Exiting.\n".encode())
+                    self.wfile.flush()
                     return  # Exit upon incorrect answer
 
             # After five correct answers, send the flag
             if correct_answers == 5:
                 self.wfile.write(f"\nCongratulations! Here is your flag: {FLAG}\n".encode())
+                self.wfile.flush()
             else:
                 self.wfile.write("\nSome answers were incorrect. Better luck next time!\n".encode())
+                self.wfile.flush()
 
         except Exception as e:
             logging.error(f"Error handling client {self.client_address}: {e}")
