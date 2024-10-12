@@ -39,7 +39,7 @@ fn handle_client(mut stream: TcpStream, flag: Arc<&str>) {
 
 fn main() -> std::io::Result<()> {
     // The flag that will be sent upon correct submission
-    let flag = Arc::new("ctf{example}");
+    let flag = Arc::new("hd3{this_guy_thinks_the_uc_is_named_after_him}");
 
     // Binding the server to a TCP socket to listen for connections
     let listener = TcpListener::bind("0.0.0.0:9999")?;

@@ -1,23 +1,21 @@
-FROM alpine:latest AS builder
+# Use an Alpine base image for a small footprint
+FROM alpine:latest
+
+# Install socat for networking
+RUN apk add --no-cache socat
+WORKDIR /challenge
+# Copy the binary and flag file to the container
+COPY challenge /challenge/binary
+COPY flag.txt /challenge/flag.txt
+
+# Set working directory
 
 
-WORKDIR /app
-COPY challenge /app/run
-RUN chmod +x /app/run
+# Ensure binary has execute permissions
+RUN chmod +x /challenge/binary
 
-FROM pwn.red/jail
-
-
-
-RUN mkdir /srv/app
-COPY --from=builder /app/run /srv/app/run
-COPY flag.txt /srv/app/flag.txt
-
-# New user for chal
-# Set permissions
-RUN chmod +x /srv/app/run
-RUN chown -R root:root /srv/app
-RUN chmod 600 /srv/app/flag.txt
-# Expose the service port
+# Expose port 6000
 EXPOSE 6000
-ENV JAIL_PORT=6000 JAIL_TMP_SIZE=1M JAIL_TIME=120
+
+# Run socat to listen on port 6000 and forward connections to the binary
+CMD ["socat", "TCP-LISTEN:6000,reuseaddr,fork", "EXEC:./binary"]

@@ -56,11 +56,12 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{hold_my_coat_in_kochoff}`
     
-- [ ] *Challenge Name 2*
+- [x] *Lost Park*
     - *Difficulty: (Med)*
-    - *Description*: 1-2 sentences max.
-    - *Dist files*: (These are the file to be distributed to the player if any)
-    - [ ] `hd3{this_guy_thinks_the_uc_is_named_after_him}`
+    - *Points: 250*
+    - *Description*: Can you find the name of the park? Submit the name of the park to the remote service for the flag!
+    - *Dist files*: image.png
+    - [x] `hd3{this_guy_thinks_the_uc_is_named_after_him}`
     
 - [x] **Beep boop boop beeeeeeeep**
     - *Difficulty: (Hard)*
@@ -163,13 +164,13 @@
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [x] `hd3{good_citizens_give_suggestions}`
     
-- [ ] **Challenge Name 3**
+- [x] **Retro search**
     - *Difficulty: (Hard)*
     - *Description*: 1-2 sentences max.
     - *Dist files*: (These are the file to be distributed to the player if any)
     - [ ] `hd3{im_under_the_director}`
     
-- [ ] **Challenge Name 4**
+- [x] **Challenge Name 4**
     - *Difficulty: (Easy)*
     - *Description*: 1-2 sentences max.
     - *Dist files*: (These are the file to be distributed to the player if any)
