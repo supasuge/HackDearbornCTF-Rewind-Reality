@@ -9,8 +9,8 @@ def extract_random_string(H, S):
     return random_string.rstrip('?')
 
 def main():
-    h, p = '0.cloud.chals.io', 31346  # Replace with actual host and port
-    c = remote(h, p)
+    h, p = 'hack-dearborn-3-ctf-quasi.chals.io', 443  # Replace with actual host and port
+    c = remote(h, p, ssl=True)
 
     # Step 1: Get hash fromm server
     c.recvuntil(b'Hashed value to match: ')
