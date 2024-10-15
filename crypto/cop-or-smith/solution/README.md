@@ -110,6 +110,13 @@ N = gcd(n1, n2)
 print("Found N: ", N)
 ```
 
+- Note in python, `n1` and `n2` would be:
+```python
+n1 = m1**e - msg1
+n2 = m2**e - msg2
+```
+Sage is just different.
+
 **Outputs:**
 ```sh
 $ sage getmodulus.sage
