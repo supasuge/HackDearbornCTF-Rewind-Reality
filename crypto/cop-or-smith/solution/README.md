@@ -4,7 +4,7 @@
 - **Author**: supasuge
 
 
-In this challenge, the RSA encryption process is straight forward, with small variations in the prime factors ($p$, $q$) used to generate the modulus $N$. While the primes $p$ and $q$ are large, they follow a specific relation, in how they are generated, allowing us to apply the Coppersmith's Method to recover the private key and decrypt the flag. The challenge name `Cop or smith` was meant to direct participants in there research for feasible attacks on RSA with constraints similar to those presented in the challenge source code `build/chal.sage`. 
+In this challenge, the RSA encryption process is straight forward, with small variations in the prime factors ($p$, $q$) used to generate the modulus $N$. While the primes $p$ and $q$ are large, they follow a specific relation in how they are generated which allows us to apply the Coppersmith's Method to recover the modulus $N$, and use the relation's to find $p$, and $q$ along as the private key to decrypt the flag. The challenge name `Cop or smith` was meant to be a direct hint toward's how to solve. There are many writeup's and article's online about how to apply the univariate, multi
 
 In `output.txt` you are give two encrypted messages `msg1`, and `msg2` with known plaintexts (`"Can't factor the modulus"`, and `"If you don't know the modulus... ;)"` respectively), as well as the encrypted `flag` however you aren't given the modulus $N$, which add's a bit of difficulty to solving this challenge. 
 
@@ -30,28 +30,70 @@ N = p * q
 - Two known plaintext's are given to us along as the encrypted flag. The known plaintext's are vital towards obtaiing the public modulus $N$, then utilizing this information for factorization of $p$ and $q$ by approximating these values in relation to the known plaintexts.
 
 ### Solution
-- As a reminder, RSA encryption is simply: $c = m^{e} \mod N$.
+- As a reminder, RSA encryption/decryption and key generation is simply:
+- $N$ = Public modulus, commonly known as public key.
+    - $e$ = public exponent, typically 65537 in practice.
 
-#### Step 1: Recovering N.
+$$
+N = p * q
+$$ 
+
+- Euler's totient function $ϕ(N)$
+
+$$
+phi = (p-1) * (q-1)
+$$
+
+- Private key calculation
+
+$$
+d = e^{-1} \mod phi
+$$
+
+- Encryption
+
+$$
+ct = m^{e} \mod N
+$$
+
+- Decryption
+
+$$
+pt = ct^{d} \mod N
+$$
+
+
+### Step 1: Recovering N.
 
 To find $N$ let's write the ciphertext `msg1` as $c_1$, and `msg2` as $c_2$. We then write:
 
-$c_1 = m_1^{e} \mod n$
+$$
+c_1 = m_1^{e} \mod n
+$$
 
-$c_2 = m_2^{e} \mod n$
+$$
+c_2 = m_2^{e} \mod n
+$$
 
 - Where $m_1$, and $m_2$ are known plaintexts, we can compute:
 
-$s_1 = m_1^{e} - c_1 = k_1 * n \nonumber$ 
+$$
+s_1 = m_1^{e} - c_1 = k_1 * n \nonumber
+$$ 
 
-$s_2 = m_2^{e} - c_2 = k_2 * n \nonumber$
+$$
+s_2 = m_2^{e} - c_2 = k_2 * n \nonumber
+$$
 
-$n = {gcd(s1,s2)} \nonumber$
+$$
+n = {gcd(s1,s2)} \nonumber
+$$
 - k should be small here.
 - Since both $s_1$, and $s_2$ are multiples of N, the GCD of $n_1$, and $n_2$ yields $N$.
 
 Here's an example to find $N$:
 
+[m.sage](https://github.com/supasuge/HackDearbornCTF-2024-Private/crypto/cop-or-smith/solution/m.sage) 
 ```python
 #!/usr/bin/env sage
 from sage.all import *
@@ -68,23 +110,22 @@ N = gcd(n1, n2)
 print("Found N: ", N)
 ```
 
-Outputs:
-```SH
+**Outputs:**
+```sh
 $ sage getmodulus.sage
 Computing m1^e and m2^e. Might take a little bit...
 Found N: 44963937755126374600334664481047432078590558677526448528255232533042900843393641503004220799608838249925381196982605560666973569980106311963242367582725806676380658554255547269782511939326650626475331312464425452541775827305809667591457674398836888834654269011725897965880438737921864382464677562154205500180134809010391946735114201783575080627053126658891559422053210040012568026170188205232160692259245605854601350566778664814242413651704640695504937477629828902132201610845226521262014355203221267288377826783451902169763284473739810831880089905194509347411113311183082865127317917012540908681244194954808967336370106883771
 ```
 
 **Step 2: Approximating Prime Factors**
+- Given the structure of the prime generation from the challenge:
 
-- Given the structure in the primes:
-
-\[
-p \approx \text{next\_prime}(0x\text{BEEF} \times \text{tmp})
-\]
-\[
-q \approx \text{next\_prime}(0x\text{DEAD} \times \text{tmp})
-\]
+$$
+p \approx \text{nextprime}(0x\text{BEEF} \times \text{tmp})
+$$
+$$
+q \approx \text{nextprime}(0x\text{DEAD} \times \text{tmp})
+$$
 
 We can approximate the ratio $r = \frac{0x\text{DEAD}}{0x\text{BEEF}}$ to relate $p$ and $q$:
   
@@ -98,11 +139,15 @@ $$
 
 Assuming $p$ and $q$ are close to their respective multiples, we can approximate $p$ and $q$ as:
   
-$$p \approx \sqrt{N \times r}$$
+$$
+p \approx \sqrt{N \times r}
+$$
 
-$$q \approx \sqrt{\frac{N}{r}}$$
+$$
+q \approx \sqrt{\frac{N}{r}}
+$$
 
-Implementation:
+**Implementation:***
 ```python
 # Approximation of p and q from their relation
 x1, x2 = 0xDEAD, 0xBEEF
@@ -113,9 +158,10 @@ nn = RealField(2000)(N)
 pp = int(sqrt(nn * r))
 ```
 
-#### Step 3: Applying Coppersmith's method
+### Step 3: Applying Coppersmith's method
 
 Coppersmith's method is used to find small roots of univariate modular equations. In this case, we set up a polynomial equation where the difference between the appraoximated prime $p'$ and the actual prime $p$ is small:
+
 $$
 f(x) = p' - x \mod N
 $$
@@ -156,33 +202,37 @@ else:
     print("Failed to find small roots for p.")
 ```
 
-#### Step 4: Calculating the Private Key and Decrypting the Flag
+### Step 4: Calculating the Private Key and Decrypting the Flag
 With $p$ and $q$ known, compute euler's totient function $ϕ(N)$
+
 $$
 ϕ(N) = (p-1) * (q-1)
 $$
 
 Private key is the modular inverse of $e$ ($65537$) module $ϕ(N)$:
+
 $$
 d = e^{-1} \mod ϕ(N)
 $$
 
 Finally, decrypting the flag:
 
-$flag = flag^{d} \mod N$
+$$
+flag = flag^{d} \mod N
+$$
 
 **Implementation:**
+
 ```python
 # Calculate private key 'd'
 phi = (p - 1) * (q - 1)
-d = inverse_mod(e, phi)
+d = inverse_mod(e, phi) # uses sagemath's inverse_mod() function for fast calculation
 print(f"Found d: {d}\n")
-# Decrypting the flag
-decrypted_flag = pow(flag, d, N)
-print(f"Flag: {long_to_bytes(decrypted_flag)}")
+decrypted_flag = pow(flag, d, N) # decrypting flag
+print(f"Flag: {long_to_bytes(decrypted_flag)}") # printing as plaintext, converting integer to bytes
 ```
 
-Full solution code + output:
+**Full solution code + Output:**
 
 ```python
 from sage.all import *
@@ -265,3 +315,8 @@ Found d: 50639917080517535273978082386226268546329083357313077587782759559697522
 
 Flag: hd3{following_bruce_the_goose}
 ```
+
+Flag: `hd3{following_bruce_the_goose}`
+
+
+Thanks for reading!
