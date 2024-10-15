@@ -79,13 +79,12 @@ Found N: 44963937755126374600334664481047432078590558677526448528255232533042900
 
 - Given the structure in the primes:
 
-$$
+\[
 p \approx \text{next\_prime}(0x\text{BEEF} \times \text{tmp})
-$$
-  
-$$
+\]
+\[
 q \approx \text{next\_prime}(0x\text{DEAD} \times \text{tmp})
-$$
+\]
 
 We can approximate the ratio $r = \frac{0x\text{DEAD}}{0x\text{BEEF}}$ to relate $p$ and $q$:
   
