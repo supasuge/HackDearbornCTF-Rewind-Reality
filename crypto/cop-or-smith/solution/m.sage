@@ -21,6 +21,8 @@ m2 = bytes_to_long("If you don't know the modulus... ;)")
 
 # Compute n1 and n2
 print("Computing m1^e and m2^e. Might take a little bit...")
+# in python it'd be m1**e...., m2**e
+# sage math is just built dif
 n1 = m1^e - msg1
 n2 = m2^e - msg2
 
