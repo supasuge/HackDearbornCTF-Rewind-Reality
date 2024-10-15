@@ -20,6 +20,7 @@ m2 = bytes_to_long("If you don't know the modulus... ;)")
 
 # Finding N from the given equations
 print("Computing m1^e and m2^e. Might take a little bit...")
+# in python this would be m1**e..., m2**e.... 
 n1 = m1^e - msg1
 n2 = m2^e - msg2
 N = gcd(n1, n2)
