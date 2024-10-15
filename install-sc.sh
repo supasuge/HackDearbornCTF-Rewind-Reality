@@ -7,7 +7,8 @@
 #   - Provides instructions for usage.
 # Snicat is a tool offered by CTFd used for there hosted CTF tier's. It's a tool made by the CTFd team that offers a netcat like alternative used to connect to a remote HTTPS host in which a TCP connection is forwarded internally and through
 # the established HTTPS connection. 
-# Wrote this because it wouldn't allow me to request a TCP port so people could just use netcat to connect to the host... only snicat would work. Wanted to make it easy for people to download and use.
+# Wrote this because it wouldn't allow me to request a TCP port so people could just use netcat to connect to the host... only snicat would work. 
+# Wanted to make it easy for people to download and use.
 
 # ANSI color codes for status messages
 RED='\033[0;31m'
