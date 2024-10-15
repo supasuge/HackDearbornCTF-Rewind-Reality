@@ -1,7 +1,7 @@
 # Cop or smith
 
 **Description:** I don't know, you tell me...
-**Author**: [supasuge]([url](https://github.com/supasuge)
+**Author**: [supasuge](https://github.com/supasuge)
 
 ## Build
 Nothing
@@ -11,7 +11,7 @@ Nothing
 - `output.txt`
 
 ## Solution
-[Solution writeup](url)
+[Solution writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/cop-or-smith/solution/README.md)
 
 ## Run
 Nothing
