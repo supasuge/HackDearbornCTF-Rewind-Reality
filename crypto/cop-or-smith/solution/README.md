@@ -168,7 +168,7 @@ $$
 
 Our goal is to find $x$ such that $p = p' - x$; given that $x$ is small relative to $p$, Coppersmith's method can efficiently find $x$:
 - **Polynomial**: $f(x) = x - p'$
-- **Bound $X$**: An upper bound on $|x|$, we set $X = 2^{500}, assuming $x$ is less than this value$
+- **Bound $X$**: An upper bound on $|x|$, we set $X = 2^{500}$, assuming $x$ is less than this value$
 - **Coppersmith's Condition**: The method works effectively if $p$ is greater than $N^\beta$ for some $\beta < \frac{1}{2}$. We choose $\beta = 0.4$.
 
 Implementation:
