@@ -46,7 +46,7 @@ $s_1 = m_1^{e} - c_1 = k_1 * n \nonumber$
 
 $s_2 = m_2^{e} - c_2 = k_2 * n \nonumber$
 
-$n = \frac{gcd(s1,s2)} \nonumber$
+$n = {gcd(s1,s2)} \nonumber$
 - k should be small here.
 - Since both $s_1$, and $s_2$ are multiples of N, the GCD of $n_1$, and $n_2$ yields $N$.
 
