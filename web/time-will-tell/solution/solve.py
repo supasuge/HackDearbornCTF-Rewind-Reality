@@ -13,14 +13,14 @@ init(autoreset=True)
 
 # Configuration
 if len(sys.argv) != 2 or sys.argv[1] not in ["local", "docker", "remote"]:
-    print("Usage: python3 solve.py [local/docker]")
+    print("Usage: python3 solve.py [local/docker/remote]")
     sys.exit(1)
 
-if sys.argv[1] == "local":
+if sys.argv[1].lower() == "local":
     ADMIN_URL = "http://localhost:8000/adminpanel"
-elif sys.argv[1] == "docker":
+elif sys.argv[1].lower() == "docker":
     ADMIN_URL = "http://172.17.0.2:8000/adminpanel"  
-elif sys.argv[1] == "remote":
+elif sys.argv[1].lower() == "remote":
     ADMIN_URL = "https://hack-dearborn-3-ctf-time-will-tell.chals.io/adminpanel"
 
 N = 3  # Number of measurements per guess (increased for accuracy)
