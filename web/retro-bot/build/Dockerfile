@@ -15,7 +15,8 @@ USER dctf3
 
 COPY --chown=dctf3:dctf3 requirements.txt app.py flag.txt chat.py .env /app/
 COPY --chown=dctf3:dctf3 static /app/static
-
+# These permissions are so that no one is able to make modification's to vital system resources for running the challenge... 
+# It's trivial to get a reverse shell in this challenge
 RUN pip install --user -r requirements.txt --no-cache-dir && \
     chmod 555 /app/app.py && \
     chmod 440 /app/.env && \
