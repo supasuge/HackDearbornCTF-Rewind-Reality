@@ -392,7 +392,7 @@ Recovered flag: hd3{cis_building_in_the_uc_abcdef_0000thisisfillerspace}
 ```
 ### Conclusion
 
-By applying CRT, LLL, and Kannan Embedding for improved accuracy (not implemented here), the attack successfully breaks the CMRG-based PRNG, ultimately recovering the flag for the challenge.
+By applying CRT, LLL, and Kannan Embedding for improved accuracy, the attack successfully breaks the CMRG-based PRNG to retrieve the flag.
 
 #### Resources Used
 
