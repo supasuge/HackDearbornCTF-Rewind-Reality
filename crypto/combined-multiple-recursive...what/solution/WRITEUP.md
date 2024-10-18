@@ -32,18 +32,22 @@ The output is $z_i$, and the values of $m_1$ and $m_2$ are of similar size. This
 
 ### Part 1 - CRT
 
-Let’s address the second question first. We can define $X_i$ modulo $m_1m_2$ by combining $x_i \mod m_1$ and $y_i \mod m_2$, leveraging the Chinese Remainder Theorem. Let's define $A$,$B$,$C$ as follows:
+Let’s address the second question first. We can define $X_i$ modulo $m_1m_2$ by combining $x_i \mod m_1$ and $y_i \mod m_2$, leveraging the Chinese Remainder Theorem. Let's define $A$, $B$, $C$ as follows:
+
 $$
 A = a_{11} \mod m_1, \quad A = a_{21} \mod m_2
 $$
+
 $$
 B = a_{12} \mod m_1, \quad B = a_{22} \mod m_2
 $$
+
 $$
 C = a_{13} \mod m_1, \quad C = a_{23} \mod m_2
 $$
 
 Using this, we derive the following [recurrence relation](https://en.wikipedia.org/wiki/Recurrence_relation):
+
 $$
 X_i = A X_{i-1} + B X_{i-2} + C X_{i-3} \mod m_1m_2
 $$
@@ -89,6 +93,7 @@ $$
 This allows us to set up a system of linear equations. The next step is solving this lattice system using LLL.
 
 When defining the basis of the lattice, think about the value $v$ that satisfies it, we can define a lattice based off of this. For example  if we define a lattice for $v_0$, $v_1$, $v_2$, $v_3$, we get:
+
 $$
 \begin{pmatrix}
 1 & 0 & 0 &  & C \\
@@ -160,11 +165,11 @@ By embedding the target vector $D$ into this extended matrix, we can transform t
 For more details on Kannan Embedding, refer to rkm’s [Lattice Survey](https://github.com/rkm0959/rkm0959_presents/blob/main/lattice_survey.pdf).
 
 
-> Note: It's possible some of the math is off in this, I am still learning latex. The paper was pretty complex... I wouldn't have been able to make and solve this challenge (within a reasonable amount of time that is) in time for the CTF given I only had a week to prepare and make challenges!
+> Note: It's possible some of the math is off in this, I am still learning latex. The paper was pretty complex... To be fair all things considered, a easier challenge likely would've been better suited given the fact people only had 24 hours for both the CTF and making their hackathon projects... Ya live and ya learn
 
 ### Extracting the State with LLL 
 
-By applying LLL to the constructed lattice, we aim to recover the values $x_i$, $y_i$, and $z_i$. After obtaining these, the PRNG state can be reconstructed. Given the recovered state, we generate future outputs and decrypt the ciphertext to retrieve the flag.
+By applying LLL to the constructed lattice, we aim to recover the values $x_i$, $y_i$, and $z_i$. After obtaining these, the PRNG state can be reconstructed. Given the recovered state, we generate future outputs to verify that we have obtained the original state of the PRNG and use this to predict the next values and successfully decrypt the ciphertext to retrieve the flag.
 
 Below is the solution code used to recover the original state and flag:
 
