@@ -1,16 +1,4 @@
----
-author: supaaasuge
-title: Combined multiple... what?
-date: 2024-10-18
-lastmod: 2024-10-18
-description: Writeup for the challenge `Combined multiple... what?` I created for Hack Dearborn: Rewind Reality
-categories:
-  - CTF
-tags:
-  - Crypto
-  - CMRG
-  - PRNG 
----
+# Combined multiple recursive ... what? 
 
 # Introduction
 
