@@ -136,7 +136,7 @@ As you stretch it out, the range of answers is proportional to the size of latti
 
 ### Part 3 (Optional) - Kannan Embedding
 
-- In order to make the challenge slightly easier for participants, because of the parameter adjustment's made, utilizing kannan embedding's is not needed to achieve the level of accuracy needed to get the flag and solve the challenge here, LLL is able recover the parameter's needed to recover the state of the PRNG just fine here. After making this challenge and doing the writeup I decided to add this in anyways because I plan to go back and try to implement under the proper conditions described in the paper and see if I can obtain a more optimizerd approach or not.
+- In order to make the challenge slightly easier for participants, because of the parameter adjustment's made, utilizing kannan embedding's is not needed to achieve the level of accuracy needed to get the flag and solve the challenge here, LLL is able recover the parameter's needed to recover the state of the PRNG on it's own just fine here.
  
 To improve the accuracy of our solution, we use **Kannan Embedding**, which transforms a **Closest Vector Problem (CVP)** into a **Shortest Vector Problem (SVP)** by embedding the target vector into the lattice, see the pdf from the resources for more info on this. The key idea behind Kannan Embedding is to extend the original lattice by adding an extra row and column, creating an embedding matrix. The embedding factor, $t$, plays a crucial role in scaling the lattice for accurate recovery.
 
