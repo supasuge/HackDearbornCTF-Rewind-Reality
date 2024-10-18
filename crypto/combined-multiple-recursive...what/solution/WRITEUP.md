@@ -105,7 +105,7 @@ $$
 
 The key point here is that it's not always available through this.. This wont't work. The range of answers that performing LLL reduction can feasibly produce is proportional to the size of the lattice's determinant that you define. If you want to be more precise here, you'll need to increase the size of the lattice. Luckily, it's possible to go one step further and define expressions for $v_0$, $v_1$, $v_2$, $v_3$, $v_4$, and $v_5$. In this case, you can define $v_3$, $v_4$, and $v_5$ as equations for $v_0$, $v_1$, and $v_2$. There's one piece of information in column 5 is wrong in the paper (i think at least), you'd see this when trying to implement it so be careful.
 
-Here's what you'll get with Lattice:
+Here's what the resulting lattice basis should look like:
 
 
 $$
