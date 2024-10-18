@@ -132,7 +132,7 @@ $$
 \end{pmatrix}
 $$
 
-As you stretch it out, the range of answers is proportional to the size of lattice (sqrt). In other words, the last lattice is $\sqrt 7$ $ \sqrt 4$ times more accurate than the first.
+As you stretch it out, the range of answers is proportional to the size of lattice (sqrt). In other words, the last lattice is $\sqrt 7$, $\sqrt 4$ times more accurate than the first.
 
 ### Part 3 (Optional) - Kannan Embedding
 
