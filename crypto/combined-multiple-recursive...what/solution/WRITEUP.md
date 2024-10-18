@@ -207,7 +207,7 @@ class PRNG:
         self.a2 = [rnd.getrandbits(20) for _ in range(3)]
         self.a3 = [rnd.getrandbits(20) for _ in range(3)]
 
-        # Hardcoded values derived from previous CMRG challenge (reduced complexity)
+        # Hardcoded CRT result values derived from CMRG 
         self.A = 44560127569626536334684692547
         self.B = 54178077656689068068903612461
         self.C = 2714806752854611792965139512
@@ -263,7 +263,7 @@ def solve(outs):
     M = prng.M
 
     u = prng.u
-
+    # Hardcoded, pre-computer CRT values  A, B, C as described in the writeup
     A = prng.A
     B = prng.B
     C = prng.C
