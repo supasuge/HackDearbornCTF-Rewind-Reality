@@ -9,7 +9,7 @@ While sadly this challenge didn't get any solves throughout the hackathon,  belo
 
 ## CMRG
 
-CMRG is a PRNG (Pseudor Random Number Generator) that combines two Linear Congruential Generators (LCGs). Given two coprime moduli, $m_1$ and $m_2$, the structure is as follows:
+CMRG is a PRNG (Pseudo Random Number Generator) that combines two Linear Congruential Generators (LCGs). Given two coprime moduli, $m_1$ and $m_2$, the structure is as follows:
 
 $$
 x_i = a_{11} x_{i-1} + a_{12} x_{i-2} + a_{13} x_{i-3} \mod m_1
