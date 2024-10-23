@@ -23,7 +23,7 @@ elif sys.argv[1].lower() == "docker":
 elif sys.argv[1].lower() == "remote":
     ADMIN_URL = "https://hack-dearborn-3-ctf-time-will-tell.chals.io/adminpanel"
 
-N = 3  # Number of measurements per guess (increased for accuracy)
+N = 3  # Number of measurements per guess (increase for accuracy)
 TOKEN_SIZE = 32  # Length of the token to recover
 HEX_CHARS = "0123456789abcdef"  # Possible characters in the token
 MAX_CONCURRENT_REQUESTS = 256  # Maximum number of concurrent requests
