@@ -34,7 +34,7 @@ limiter = Limiter(
 
 def strcmp(s1: str, s2: str) -> bool:
     """
-    Compares two strings in a time-constant manner to prevent timing attacks.
+    Compares two strings in a "time-constant" manner ;)
 
     Args:
         s1 (str): First string.
