@@ -4,6 +4,13 @@
 
 Source repository for the small CTF at [Hack Dearborn: Rewind Reality](https://www.hackdearborn.org/) as part of the Cybersecurity challenges!
 
+**Unsolved challenge solutions + explaination**:
+- [Combined multiple recursive... what? (Crypto, Hard) - Writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/combined-multiple-recursive...what/solution/WRITEUP.md)
+- [Cop or smith? (Crypto, Hard) - Writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/cop-or-smith/solution/README.md)
+  - Please let me know if I made any error's in the LaTex math equations and/or the formatting of the LaTex in the above two writeup's if at all possible, I am still learning LaTex syntax so it's possible there are small error's format wise. I spent lot's of time on the above two write-ups so I hope they are beneficial to someone :)
+- I'm feeling quasi (Crypto, Medium): *Coming soon*
+- Time will tell (Web, Hard): *Coming soon*
+
 ***
 
 Authors:
