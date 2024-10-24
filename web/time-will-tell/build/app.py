@@ -26,7 +26,7 @@ MAGIC_NUMBER: float = 0.19
 
 limiter = Limiter(
     key_func=get_remote_address,
-    default_limits=["10000 per minute", "1000000 per day"],  # Adjust as needed
+    default_limits=["10000 per minute", "1000000 per day"], 
     app=app,
     storage_uri="memory://",
 )
