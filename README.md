@@ -30,7 +30,7 @@ Authors:
   - `dist/`:
     - Stores the file/s or archive to distribute to challenge participant.
   - `solution/`:
-    - Includes solution scripts (`solve.py`, etc.) and writeups (*some are still in-progress*).
+    - Includes solution scripts (`solve.py`, etc.) and writeups 
   - `README.md`:
     - Provides brief description of challenge points, flag format, and build/dist information.
 
