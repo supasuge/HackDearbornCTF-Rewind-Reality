@@ -18,13 +18,12 @@ app.secret_key = os.urandom(16).hex()
 # Read flag from file
 FLAG: str = open("flag.txt").read().strip()
 
-# Generate a secret token for admin panel access
+# 16-Byte token -> Hex
 SECRET_TOKEN: str = os.urandom(16).hex()
 
-# Magic number used in strcmp for timing attacks (approximately 10ms)
+# Magic number used for strcmp, it's magic trust me bro
 MAGIC_NUMBER: float = 0.19
 
-# Initialize Flask-Limiter with corrected 'default_limits'
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["10000 per minute", "1000000 per day"],  # Adjust as needed
@@ -34,7 +33,7 @@ limiter = Limiter(
 
 def strcmp(s1: str, s2: str) -> bool:
     """
-    Compares two strings in a "time-constant" manner ;)
+    Compares two strings in a "time-constant" manner 😉
 
     Args:
         s1 (str): First string.
@@ -48,7 +47,7 @@ def strcmp(s1: str, s2: str) -> bool:
     for c1, c2 in zip(s1, s2):
         if c1 != c2:
             return False
-        gevent.sleep(MAGIC_NUMBER)  # Introduce delay for timing attack
+        gevent.sleep(MAGIC_NUMBER)  # Magic performed
     return True
 
 def get_date() -> str:
