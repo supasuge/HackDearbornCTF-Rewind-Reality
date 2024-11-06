@@ -21,7 +21,7 @@ class PRNG:
         self.a1 = [rnd.getrandbits(20) for _ in range(3)]
         self.a2 = [rnd.getrandbits(20) for _ in range(3)]
         self.a3 = [rnd.getrandbits(20) for _ in range(3)]
-        # Hardcoded pre-computed CRT values  A, B, C as described in the writeup
+        
         self.A = 44560127569626536334684692547
         self.B = 54178077656689068068903612461
         self.C = 2714806752854611792965139512
