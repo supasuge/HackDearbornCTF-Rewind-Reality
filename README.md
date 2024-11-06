@@ -8,7 +8,7 @@ Source repository for the small CTF at [Hack Dearborn: Rewind Reality](https://w
 - [Combined multiple recursive... what? (Crypto, Hard) - Writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/combined-multiple-recursive...what/solution/WRITEUP.md)
 - [Cop or smith? (Crypto, Hard) - Writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/cop-or-smith/solution/README.md)
 - **I'm feeling quasi (Crypto, Medium)**: Challenge loosely based off of the *(Fully broken)* Xifrat compact Public Key Cryptosystem based on Quasigroups. **Coming soon**
-- **Time will tell (Web, Hard)**: Timing attack on vulnerable `strcmp` function that implement's a 0.19ms sleep for easier statistical measurements and to account for the load/amount of requests being handled by WSGI Asynch server. **Coming soon**
+- **Time will tell (Web, Hard)**: Asynchronous timing attack on vulnerable `strcmp` function that implement's a `0.19ms` sleep for easier statistical measurements and to account for the load/amount of requests being handled by WSGI Asynch server. **Coming soon**
 - **Beep beep boop beep (Misc, Hard)**: Fun OSINT/Misc challenge in which I converted a QR Code image containing the encoded flag into it's binary representation then converted said binary string to a morse code audio file (0=800Hz, 1=1200Hz). Intended solution is to use `pydub` or a spectrum analyzer to automate the processing of the audio file to recover the `.png` QR Code from the raw binary itself represented by the morse code audio.
 
 ***
