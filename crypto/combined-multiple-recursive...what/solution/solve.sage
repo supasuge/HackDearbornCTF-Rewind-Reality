@@ -65,7 +65,7 @@ def solve(outs):
     M = prng.M
 
     u = prng.u
-    # Hardcoded pre-computed CRT values  A, B, C as described in the writeup
+  
     A = prng.A
     B = prng.B
     C = prng.C
