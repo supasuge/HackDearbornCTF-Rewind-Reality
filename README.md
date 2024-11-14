@@ -2,7 +2,9 @@
 
 **Flag Format**: `hd3{}`
 
-Source repository for the small CTF at [Hack Dearborn: Rewind Reality](https://www.hackdearborn.org/) as part of the Cybersecurity challenges!
+Source code + writeup repository for the small CTF at [Hack Dearborn: Rewind Reality](https://www.hackdearborn.org/) as part of the Cybersecurity challenges! 
+
+> This *CTF* was rushed quite a bit thus the incompleteness. Overall, still some pretty cool and fun challenges!
 
 **Unsolved challenge solutions + explaination**:
 - [Combined multiple recursive... what? (Crypto, Hard) - Writeup](https://github.com/supasuge/HackDearbornCTF-Rewind-Reality/blob/main/crypto/combined-multiple-recursive...what/solution/WRITEUP.md)
