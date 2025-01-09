@@ -7,7 +7,7 @@ OSINT challenge
 
 
 ## Build
-Have tried rust server, rust stdio binary that runs over `socat` to forward stdin/out over TCP, and both in python. CTFd just wont gimme a mf port smh. unlucky
+Have tried rust server, rust stdio binary that runs over `socat` to forward stdin/out over TCP, and both in python. CTFd just wont gimme a port smh because there API deemed me unworthy depite response code. unlucky...
 
 
 ## Run
