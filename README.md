@@ -1,4 +1,4 @@
-# HackDearbornCTF-2024-Private
+# HackDearbornCTF-2024 Source
 
 **Flag Format**: `hd3{}`
 
